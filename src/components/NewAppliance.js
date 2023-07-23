@@ -33,7 +33,7 @@ const NewAppliance = ({ onApplianceAdded }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Send a POST request to add a new appliance to the backend API
-    axios.post('https://3.94.210.15:8010/create', { serial_number:serialNumber, brand, model, date_bought:dateBought,status })
+    axios.post('https://6hxx73ulo2.execute-api.us-east-1.amazonaws.com/prod', { serial_number:serialNumber, brand, model, date_bought:dateBought,status })
       .then((response) => {
         console.log('Appliance added successfully:', response.data);
         // Clear form fields after successful addition
