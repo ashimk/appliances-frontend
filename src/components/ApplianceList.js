@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { List, ListItem, ListItemText, Button, Typography, Container, Paper, makeStyles } from '@material-ui/core';
+import { BarChart } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
   // ... Your styles ...
@@ -12,14 +13,15 @@ const ApplianceList = () => {
 
   useEffect(() => {
     // Fetch the list of appliances from the backend API
-    axios.get('https://44.202.138.177:8090/appliances')
-      .then((response) => setAppliances(response.data))
+    axios.get('https://3.94.210.15:8010/view')
+      .then((response) => setAppliances(response.data["data"]))
       .catch((error) => console.error('Error fetching appliances:', error));
+      console.log("appliances", appliances)
   }, []);
 
   const handleDelete = (serialNumber, brand, model) => {
     // Send a DELETE request to the backend API to delete the appliance
-    axios.delete('https://44.202.138.177:8090/appliance', {
+    axios.delete('https://3.94.210.15:8010/delete', {
       data: {
         serial_number: serialNumber,
         brand: brand,
@@ -29,8 +31,8 @@ const ApplianceList = () => {
       .then((response) => {
         console.log('Appliance deleted successfully:', response.data);
         // After deletion, refresh the appliance list
-        axios.get('https://44.202.138.177:8090/appliances')
-          .then((response) => setAppliances(response.data))
+        axios.get('https://3.94.210.15:8010/view')
+          .then((response) => setAppliances(response.data["data"]))
           .catch((error) => console.error('Error fetching appliances:', error));
       })
       .catch((error) => console.error('Error deleting appliance:', error));

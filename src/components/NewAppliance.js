@@ -28,12 +28,12 @@ const NewAppliance = ({ onApplianceAdded }) => {
   const [brand, setBrand] = useState('');
   const [model, setModel] = useState('');
   const [status, setStatus] = useState('');
-  const [dateBought, setDateBought] = useState(null); // Initialize dateBought as null
+  const [dateBought, setDateBought] = useState(''); // Initialize dateBought as null
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // Send a POST request to add a new appliance to the backend API
-    axios.post('https://44.202.138.177:8090/appliance', { serialNumber, brand, model, dateBought })
+    axios.post('https://3.94.210.15:8010/create', { serial_number:serialNumber, brand, model, date_bought:dateBought,status })
       .then((response) => {
         console.log('Appliance added successfully:', response.data);
         // Clear form fields after successful addition
@@ -42,7 +42,7 @@ const NewAppliance = ({ onApplianceAdded }) => {
         setModel('');
         setDateBought(null); // Reset the dateBought state
         // Notify parent component about the new appliance added
-        onApplianceAdded();
+        //onApplianceAdded();
       })
       .catch((error) => console.error('Error adding appliance:', error));
   };
@@ -82,6 +82,7 @@ const NewAppliance = ({ onApplianceAdded }) => {
         />
         <TextField
           label="DD/MM/YYYY"
+          name="dateBought"
           type="text"
           value={dateBought}
           onChange={(e) => setDateBought(e.target.value)}
