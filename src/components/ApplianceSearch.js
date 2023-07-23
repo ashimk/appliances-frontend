@@ -43,7 +43,7 @@ const ApplianceSearch = ({ onSearch }) => {
 
     try {
       // Make the API call to search appliances
-      const response = await axios.post('https://3.94.210.15:8010/search', { serial_number:serialNumber, brand, model, date_bought:dateBought,status ,
+      const response = await axios.put('https://6hxx73ulo2.execute-api.us-east-1.amazonaws.com/prod', { serial_number:serialNumber, brand, model, date_bought:dateBought,status ,
 
       });
 
