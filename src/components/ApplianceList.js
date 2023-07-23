@@ -21,7 +21,7 @@ const ApplianceList = () => {
 
   const handleDelete = (serialNumber, brand, model) => {
     // Send a DELETE request to the backend API to delete the appliance
-    axios.delete('https://3.94.210.15:8010/delete', {
+    axios.delete('https://6hxx73ulo2.execute-api.us-east-1.amazonaws.com/prod', {
       data: {
         serial_number: serialNumber,
         brand: brand,
@@ -31,7 +31,7 @@ const ApplianceList = () => {
       .then((response) => {
         console.log('Appliance deleted successfully:', response.data);
         // After deletion, refresh the appliance list
-        axios.get('https://6hxx73ulo2.execute-api.us-east-1.amazonaws.com/prod')
+        axios.get('https://6hxx73ulo2.execute-api.us-east-1.amazonaws.com/prod', {'Access-Control-Allow-Origin': '*'})
           .then((response) => setAppliances(response.data["body-json"]["data"]))
           .catch((error) => console.error('Error fetching appliances:', error));
       })
