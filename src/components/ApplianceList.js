@@ -12,14 +12,14 @@ const ApplianceList = () => {
 
   useEffect(() => {
     // Fetch the list of appliances from the backend API
-    axios.get('http://44.202.138.177:8090/appliances')
+    axios.get('https://44.202.138.177:8090/appliances')
       .then((response) => setAppliances(response.data))
       .catch((error) => console.error('Error fetching appliances:', error));
   }, []);
 
   const handleDelete = (serialNumber, brand, model) => {
     // Send a DELETE request to the backend API to delete the appliance
-    axios.delete('http://44.202.138.177:8090/appliance', {
+    axios.delete('https://44.202.138.177:8090/appliance', {
       data: {
         serial_number: serialNumber,
         brand: brand,
@@ -29,7 +29,7 @@ const ApplianceList = () => {
       .then((response) => {
         console.log('Appliance deleted successfully:', response.data);
         // After deletion, refresh the appliance list
-        axios.get('http://44.202.138.177:8090/appliances')
+        axios.get('https://44.202.138.177:8090/appliances')
           .then((response) => setAppliances(response.data))
           .catch((error) => console.error('Error fetching appliances:', error));
       })

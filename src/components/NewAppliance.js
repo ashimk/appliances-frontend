@@ -33,7 +33,7 @@ const NewAppliance = ({ onApplianceAdded }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Send a POST request to add a new appliance to the backend API
-    axios.post('http://44.202.138.177:8090/appliance', { serialNumber, brand, model, dateBought })
+    axios.post('https://44.202.138.177:8090/appliance', { serialNumber, brand, model, dateBought })
       .then((response) => {
         console.log('Appliance added successfully:', response.data);
         // Clear form fields after successful addition
