@@ -13,8 +13,8 @@ const ApplianceList = () => {
 
   useEffect(() => {
     // Fetch the list of appliances from the backend API
-    axios.get('https://3.94.210.15:8010/view')
-      .then((response) => setAppliances(response.data["data"]))
+    axios.get('https://6hxx73ulo2.execute-api.us-east-1.amazonaws.com/prod')
+      .then((response) => setAppliances(response.data["body-json"]["data"]))
       .catch((error) => console.error('Error fetching appliances:', error));
       console.log("appliances", appliances)
   }, []);
@@ -31,8 +31,8 @@ const ApplianceList = () => {
       .then((response) => {
         console.log('Appliance deleted successfully:', response.data);
         // After deletion, refresh the appliance list
-        axios.get('https://3.94.210.15:8010/view')
-          .then((response) => setAppliances(response.data["data"]))
+        axios.get('https://6hxx73ulo2.execute-api.us-east-1.amazonaws.com/prod')
+          .then((response) => setAppliances(response.data["body-json"]["data"]))
           .catch((error) => console.error('Error fetching appliances:', error));
       })
       .catch((error) => console.error('Error deleting appliance:', error));
