@@ -13,7 +13,7 @@ const ApplianceList = () => {
 
   useEffect(() => {
     // Fetch the list of appliances from the backend API
-    axios.get('https://6hxx73ulo2.execute-api.us-east-1.amazonaws.com/prod')
+    axios.get('https://6hxx73ulo2.execute-api.us-east-1.amazonaws.com/prod', {'Access-Control-Allow-Origin': '*'})
       .then((response) => setAppliances(response.data["body-json"]["data"]))
       .catch((error) => console.error('Error fetching appliances:', error));
       console.log("appliances", appliances)
